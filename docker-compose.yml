@@ -1,0 +1,9 @@
+services:
+  datenschutz:
+    build: .
+    image: datenschutz-bachelorarbeit:latest
+    container_name: datenschutz-bachelorarbeit
+    restart: unless-stopped
+    ports:
+      # Host-Port : Container-Port  ->  bei Bedarf den linken Wert aendern
+      - "8088:80"
