@@ -6,4 +6,4 @@ services:
     restart: unless-stopped
     ports:
       # Host-Port : Container-Port  ->  bei Bedarf den linken Wert aendern
-      - "8088:80"
+      - "8095:80"

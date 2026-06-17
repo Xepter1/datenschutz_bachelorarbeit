@@ -13,7 +13,7 @@ nginx-Container. Gedacht für das Hosting auf einem Raspberry Pi via Portainer.
 └── docker-compose.yml   # Stack-Definition für Portainer
 ```
 
-Standard-Port: **8088** auf dem Host (`http://<raspi-ip>:8088`).
+Standard-Port: **8095** auf dem Host (`http://<raspi-ip>:8095`).
 Zum Ändern in `docker-compose.yml` den linken Wert bei `ports` anpassen.
 
 ## Deployment in Portainer (Git-Stack)
@@ -24,13 +24,13 @@ Zum Ändern in `docker-compose.yml` den linken Wert bei `ports` anpassen.
 4. Repository URL eintragen, Branch `main`, Compose path `docker-compose.yml`.
 5. **Deploy the stack**. Portainer baut das Image und startet den Container.
 
-Aufruf danach: `http://<raspi-ip>:8088`
+Aufruf danach: `http://<raspi-ip>:8095`
 
 ## Lokal testen
 
 ```bash
 docker compose up --build -d
-# http://localhost:8088
+# http://localhost:8095
 docker compose down
 ```
 
