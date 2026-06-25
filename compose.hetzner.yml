@@ -1,0 +1,27 @@
+# Hetzner Multi-Tenant Deploy — Caddy-Proxy, Auto-HTTPS
+# Siehe Hosting-Handbuch Teil B, Schritt 2b (statische Seite, Nginx, Port 80).
+#
+# Portainer:  Stacks -> Add stack -> Build method: Repository
+#   Repository URL : https://github.com/Xepter1/datenschutz_bachelorarbeit
+#   Branch         : main
+#   Compose path   : compose.hetzner.yml
+#
+# DNS vorher: A-Record  datenschutz.befragung  ->  46.225.209.78   (Hetzner-DNS, Zone xepter.de)
+services:
+  web:
+    build: .
+    image: datenschutz-web:latest
+    container_name: datenschutz-web
+    restart: unless-stopped
+    networks: [caddy]
+    labels:
+      # Caddy bedient die Subdomain und holt das HTTPS-Zertifikat automatisch.
+      # Andere Subdomain gewuenscht? -> nur diese Zeile + den passenden A-Record aendern.
+      caddy: datenschutz.befragung.xepter.de
+      caddy.reverse_proxy: "{{upstreams 80}}"
+
+# Gemeinsames Proxy-Netz (existiert bereits auf dem Server).
+# KEINE ports: -> der Container ist ausschliesslich ueber Caddy (HTTPS) erreichbar.
+networks:
+  caddy:
+    external: true
